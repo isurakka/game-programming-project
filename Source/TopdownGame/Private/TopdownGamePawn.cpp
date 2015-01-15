@@ -9,6 +9,7 @@ const FName ATopdownGamePawn::MoveForwardBinding("MoveForward");
 const FName ATopdownGamePawn::MoveRightBinding("MoveRight");
 const FName ATopdownGamePawn::FireForwardBinding("FireForward");
 const FName ATopdownGamePawn::FireRightBinding("FireRight");
+const FName ATopdownGamePawn::ShootBinding("Shoot");
 
 ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -29,7 +30,7 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	CameraBoom->AttachTo(RootComponent);
 	CameraBoom->bAbsoluteRotation = true; // Don't want arm to rotate when ship does
 	CameraBoom->TargetArmLength = 1200.f;
-	CameraBoom->RelativeRotation = FRotator(-80.f, 0.f, 0.f);
+	CameraBoom->RelativeRotation = FRotator(-90.f, 0.f, 0.f);
 	CameraBoom->bDoCollisionTest = false; // Don't want to pull camera in when it collides with level
 
 	// Create a camera...
@@ -38,7 +39,7 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	CameraComponent->bUsePawnControlRotation = false;	// Camera does not rotate relative to arm
 
 	// Movement
-	MoveSpeed = 1000.0f;
+	MoveSpeed = 500.0f;
 	// Weapon
 	GunOffset = FVector(90.f, 0.f, 0.f);
 	FireRate = 0.1f;
@@ -52,8 +53,9 @@ void ATopdownGamePawn::SetupPlayerInputComponent(class UInputComponent* InputCom
 	// set up gameplay key bindings
 	InputComponent->BindAxis(MoveForwardBinding);
 	InputComponent->BindAxis(MoveRightBinding);
-	InputComponent->BindAxis(FireForwardBinding);
-	InputComponent->BindAxis(FireRightBinding);
+	//InputComponent->BindAxis(FireForwardBinding);
+	//InputComponent->BindAxis(FireRightBinding);
+	InputComponent->BindAxis(ShootBinding);
 }
 
 void ATopdownGamePawn::Tick(float DeltaSeconds)
@@ -73,14 +75,7 @@ void ATopdownGamePawn::Tick(float DeltaSeconds)
 	{
 		const FRotator NewRotation = Movement.Rotation();
 		FHitResult Hit(1.f);
-		RootComponent->MoveComponent(Movement, NewRotation, true, &Hit);
-		
-		if (Hit.IsValidBlockingHit())
-		{
-			const FVector Normal2D = Hit.Normal.SafeNormal2D();
-			const FVector Deflection = FVector::VectorPlaneProject(Movement, Normal2D) * (1.f - Hit.Time);
-			RootComponent->MoveComponent(Deflection, NewRotation, true);
-		}
+		RootComponent->MoveComponent(Movement, RootComponent->GetComponentRotation(), true, &Hit);
 	}
 	
 	// Create fire direction vector
@@ -89,13 +84,13 @@ void ATopdownGamePawn::Tick(float DeltaSeconds)
 	const FVector FireDirection = FVector(FireForwardValue, FireRightValue, 0.f);
 
 	// Try and fire a shot
-	FireShot(FireDirection);
+	//FireShot(FireDirection);
 }
 
 void ATopdownGamePawn::FireShot(FVector FireDirection)
 {
 	// If we it's ok to fire again
-	if (bCanFire == true)
+	if (bCanFire == true && GetInputAxisValue(ShootBinding) == 1.0f)
 	{
 		// If we are pressing fire stick in a direction
 		if (FireDirection.SizeSquared() > 0.0f)
