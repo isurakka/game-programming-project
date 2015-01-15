@@ -29,7 +29,7 @@ void ATopdownGamePlayerController::Tick(float dt)
 	FRotator newRotation = FRotator(currentCharacterRotation.Pitch, targetRotation.Yaw, currentCharacterRotation.Roll);
 	pawn->SetActorRotation(newRotation);
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, mouseDirection.ToString());
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, mouseDirection.ToString());
 	
 	auto castedPawn = Cast<ATopdownGamePawn, APawn>(pawn);
 	castedPawn->FireShot(FVector(mouseDirection.X, mouseDirection.Y, 0.0f));
