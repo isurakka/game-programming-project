@@ -56,6 +56,7 @@ public:
 	static const FName MoveRightBinding;
 	static const FName FireForwardBinding;
 	static const FName FireRightBinding;
+	static const FName ShootBinding;
 
 private:
 
