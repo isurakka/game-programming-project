@@ -12,6 +12,8 @@ ATopdownGamePlayerController::ATopdownGamePlayerController(const FObjectInitiali
 	bShowMouseCursor = true;
 	bEnableClickEvents = true;
 	bEnableMouseOverEvents = true;
+
+	SetReplicates(true);
 }
 
 void ATopdownGamePlayerController::Tick(float dt)
@@ -19,6 +21,11 @@ void ATopdownGamePlayerController::Tick(float dt)
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Tick");
 
 	auto pawn = GetPawn();
+	if (pawn == NULL)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, "Pawn is null!");
+		return;
+	}
 
 	FVector mouseLocation, mouseDirection;
 	DeprojectMousePositionToWorld(mouseLocation, mouseDirection);

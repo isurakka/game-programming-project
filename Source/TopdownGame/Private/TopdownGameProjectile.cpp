@@ -7,6 +7,8 @@
 ATopdownGameProjectile::ATopdownGameProjectile(const FObjectInitializer& ObjectInitializer) 
 	: Super(ObjectInitializer)
 {
+	bReplicates = true;
+
 	// Static reference to the mesh to use for the projectile
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> ProjectileMeshAsset(TEXT("/Game/Meshes/SM_Projectile.SM_Projectile"));
 

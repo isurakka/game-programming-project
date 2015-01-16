@@ -20,6 +20,10 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	RootComponent = ShipMeshComponent;
 	ShipMeshComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
 	ShipMeshComponent->SetStaticMesh(ShipMesh.Object);
+
+	// Replication fix
+	//ShipMeshComponent->SetMobility(EComponentMobility::Movable);
+	//ShipMeshComponent->SetSimulatePhysics(true);
 	
 	// Cache our sound effect
 	static ConstructorHelpers::FObjectFinder<USoundBase> FireAudio(TEXT("/Game/Audio/TemplateTSS_WeaponFire.TemplateTSS_WeaponFire"));
@@ -37,6 +41,8 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	CameraComponent = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("TopDownCamera"));
 	CameraComponent->AttachTo(CameraBoom, USpringArmComponent::SocketName);
 	CameraComponent->bUsePawnControlRotation = false;	// Camera does not rotate relative to arm
+
+	SetReplicates(true);
 
 	// Movement
 	MoveSpeed = 500.0f;
@@ -68,15 +74,19 @@ void ATopdownGamePawn::Tick(float DeltaSeconds)
 	const FVector MoveDirection = FVector(ForwardValue, RightValue, 0.f).ClampMaxSize(1.0f);
 
 	// Calculate  movement
-	const FVector Movement = MoveDirection * MoveSpeed * DeltaSeconds;
+	FVector Movement = MoveDirection * MoveSpeed * DeltaSeconds;
 
 	// If non-zero size, move this actor
 	if (Movement.SizeSquared() > 0.0f)
 	{
 		const FRotator NewRotation = Movement.Rotation();
-		FHitResult Hit(1.f);
-		RootComponent->MoveComponent(Movement, RootComponent->GetComponentRotation(), true, &Hit);
+		AddMovementInput(MoveDirection, MoveSpeed * DeltaSeconds);
+		//RootComponent->MoveComponent(Movement, RootComponent->GetComponentRotation(), true, &Hit);
 	}
+
+	Movement = ConsumeMovementInputVector();
+	FHitResult Hit(1.f);
+	RootComponent->MoveComponent(Movement, RootComponent->GetComponentRotation(), true, &Hit);
 	
 	// Create fire direction vector
 	const float FireForwardValue = GetInputAxisValue(FireForwardBinding);
