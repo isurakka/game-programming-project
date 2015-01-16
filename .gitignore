@@ -220,6 +220,12 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
+
+
+
+# This is ignored because UE4 likes to modify it on every computer
+*.sln
+
 # UE4 files
 /Binaries
 /DerivedDataCache
