@@ -1,6 +1,7 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 #pragma once
 
+#include "Weapon.h"
 #include "GameFramework/Character.h"
 #include "TopdownGamePawn.generated.h"
 
@@ -35,6 +36,9 @@ public:
 	/* The speed our ship moves around the level */
 	UPROPERTY(Category = Gameplay, EditAnywhere, BlueprintReadWrite)
 	float MoveSpeed;
+
+	UPROPERTY(Category = Weapons, EditAnywhere, BlueprintReadWrite)
+	TArray<AWeapon*> Weapons;
 
 	/** Sound to play each time we fire */
 	UPROPERTY(Category = Audio, EditAnywhere, BlueprintReadWrite)

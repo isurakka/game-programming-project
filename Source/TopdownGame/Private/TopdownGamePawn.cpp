@@ -21,6 +21,8 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	ShipMeshComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
 	ShipMeshComponent->SetStaticMesh(ShipMesh.Object);
 
+	Weapons = TArray<AWeapon*>();
+
 	// Replication fix
 	//ShipMeshComponent->SetMobility(EComponentMobility::Movable);
 	//ShipMeshComponent->SetSimulatePhysics(true);
