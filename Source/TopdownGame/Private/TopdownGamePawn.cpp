@@ -14,12 +14,11 @@ const FName ATopdownGamePawn::ShootBinding("Shoot");
 ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {	
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> ShipMesh(TEXT("/Game/Meshes/UFO.UFO"));
+	//static ConstructorHelpers::FObjectFinder<UStaticMesh> ShipMesh(TEXT("/Game/Meshes/UFO.UFO"));
 	// Create the mesh component
 	ShipMeshComponent = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("ShipMesh"));
 	RootComponent = ShipMeshComponent;
 	ShipMeshComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
-	ShipMeshComponent->SetStaticMesh(ShipMesh.Object);
 
 	Weapons = TArray<AWeapon*>();
 
@@ -52,6 +51,11 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	GunOffset = FVector(90.f, 0.f, 0.f);
 	FireRate = 0.1f;
 	bCanFire = true;
+}
+
+void ATopdownGamePawn::OnConstruction(const FTransform& Transform)
+{
+	ShipMeshComponent->SetStaticMesh(PlayerMesh);
 }
 
 void ATopdownGamePawn::SetupPlayerInputComponent(class UInputComponent* InputComponent)
