@@ -11,7 +11,7 @@ class ATopdownGamePawn : public APawn
 	GENERATED_BODY()
 
 	/* The mesh component */
-	UPROPERTY(Category = Mesh, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(Category = Mesh, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* ShipMeshComponent;
 
 	/** The camera */
@@ -25,8 +25,11 @@ class ATopdownGamePawn : public APawn
 public:
 	ATopdownGamePawn(const FObjectInitializer& ObjectInitializer);
 
+	UPROPERTY(Category = Mesh, EditDefaultsOnly, BlueprintReadWrite)
+	UStaticMesh* PlayerMesh;
+
 	/** Offset from the ships location to spawn projectiles */
-	UPROPERTY(Category = Gameplay, EditAnywhere, BlueprintReadWrite )
+	UPROPERTY(Category = Gameplay, EditAnywhere, BlueprintReadWrite)
 	FVector GunOffset;
 	
 	/* How fast the weapon will fire */
@@ -54,6 +57,8 @@ public:
 
 	/* Handler for the fire timer expiry */
 	void ShotTimerExpired();
+
+	virtual void OnConstruction(const FTransform& Transform) override;
 
 	// Static names for axis bindings
 	static const FName MoveForwardBinding;
