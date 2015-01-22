@@ -18,11 +18,11 @@ public:
 
 	//USceneComponent* SceneComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
 	UStaticMeshComponent* WeaponMeshComponent;
 
-	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
-	//UStaticMesh* WeaponMesh;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
+	UStaticMesh* WeaponMesh;
 
 	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
 	//FTransform MeshTransform;

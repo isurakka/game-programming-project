@@ -26,6 +26,6 @@ AWeapon::AWeapon(const FObjectInitializer& ObjectInitializer)
 
 void AWeapon::OnConstruction(const FTransform& Transform)
 {
-	//WeaponMeshComponent->SetStaticMesh(WeaponMesh);
+	WeaponMeshComponent->SetStaticMesh(WeaponMesh);
 	//WeaponMeshComponent->SetRelativeTransform(MeshTransform);
 }
