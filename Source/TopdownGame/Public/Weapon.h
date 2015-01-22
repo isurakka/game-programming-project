@@ -16,11 +16,16 @@ class TOPDOWNGAME_API AWeapon : public AActor
 public:
 	AWeapon(const FObjectInitializer& ObjectInitializer);
 
-	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
-	class UStaticMeshComponent* WeaponMeshComponent;
+	//USceneComponent* SceneComponent;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
-	UStaticMesh* WeaponMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
+	UStaticMeshComponent* WeaponMeshComponent;
+
+	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
+	//UStaticMesh* WeaponMesh;
+
+	//UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Mesh)
+	//FTransform MeshTransform;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 	float ShootInterval;
@@ -30,4 +35,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 	int32 MaxAmmo;
+
+	virtual void OnConstruction(const FTransform& Transform) override;
 };
