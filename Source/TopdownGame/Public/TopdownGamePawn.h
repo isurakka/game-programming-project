@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Weapon.h"
+#include "Engine.h"
 #include "GameFramework/Character.h"
 #include "TopdownGamePawn.generated.h"
 
@@ -21,6 +22,9 @@ class ATopdownGamePawn : public APawn
 	/** Camera boom positioning the camera above the character */
 	UPROPERTY(Category = Camera, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
+
+	UPROPERTY(Category = Camera, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UCapsuleComponent* CapsuleComponent;
 
 public:
 	ATopdownGamePawn(const FObjectInitializer& ObjectInitializer);
@@ -59,6 +63,9 @@ public:
 	void ShotTimerExpired();
 
 	virtual void OnConstruction(const FTransform& Transform) override;
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Switch Functions")
+	void OnOverlapBegin(AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	// Static names for axis bindings
 	static const FName MoveForwardBinding;

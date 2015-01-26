@@ -14,11 +14,12 @@ const FName ATopdownGamePawn::ShootBinding("Shoot");
 ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {	
-	//static ConstructorHelpers::FObjectFinder<UStaticMesh> ShipMesh(TEXT("/Game/Meshes/UFO.UFO"));
-	// Create the mesh component
+	CapsuleComponent = ObjectInitializer.CreateDefaultSubobject<UCapsuleComponent>(this, TEXT("Capsule"));
+	RootComponent = CapsuleComponent;
+
 	ShipMeshComponent = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("ShipMesh"));
-	RootComponent = ShipMeshComponent;
 	ShipMeshComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
+	ShipMeshComponent->AttachTo(RootComponent);
 
 	Weapons = TArray<AWeapon*>();
 
@@ -45,6 +46,8 @@ ATopdownGamePawn::ATopdownGamePawn(const FObjectInitializer& ObjectInitializer)
 
 	SetReplicates(true);
 
+	CapsuleComponent->OnComponentBeginOverlap.AddDynamic(this, &ATopdownGamePawn::OnOverlapBegin);
+
 	// Movement
 	MoveSpeed = 500.0f;
 	// Weapon
@@ -68,6 +71,11 @@ void ATopdownGamePawn::SetupPlayerInputComponent(class UInputComponent* InputCom
 	//InputComponent->BindAxis(FireForwardBinding);
 	//InputComponent->BindAxis(FireRightBinding);
 	InputComponent->BindAxis(ShootBinding);
+}
+
+void ATopdownGamePawn::OnOverlapBegin_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, OtherActor->GetFullName());
 }
 
 void ATopdownGamePawn::Tick(float DeltaSeconds)
