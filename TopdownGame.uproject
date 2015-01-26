@@ -2,12 +2,5 @@
 	"FileVersion": 3,
 	"EngineAssociation": "{EBEB7C1E-4E8D-050E-783E-EF99899C6195}",
 	"Category": "",
-	"Description": "",
-	"Modules": [
-		{
-			"Name": "TopdownGame",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		}
-	]
+	"Description": ""
 }
