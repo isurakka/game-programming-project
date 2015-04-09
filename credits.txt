@@ -1,3 +1,9 @@
 ### AUDIO
+### Freesound
 Lightning zapper sound: https://www.freesound.org/people/JoelAudio/sounds/136542/
 Shotgun sound: http://freesound.org/people/Kodack/sounds/258194/
+Teleport sound: http://freesound.org/people/fins/sounds/172207/
+
+### Sonniss GDC Game Audio Bundle
+Varazuvi - Hollywood Dragons - gDragon Short Huff
+RDGSFX002 - Creatures - Creature Screeches
