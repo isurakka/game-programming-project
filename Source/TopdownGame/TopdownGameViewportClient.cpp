@@ -6,14 +6,21 @@
 
 bool UTopdownGameViewportClient::InputKey(FViewport* InViewport, int32 ControllerId, FKey Key, EInputEvent EventType, float AmountDepressed, bool bGamepad)
 {
-	//bool ret = UGameViewportClient::InputKey(InViewport, ControllerId, Key, EventType, AmountDepressed, bGamepad);
+
+	if (bGamepad)
+	{
+		ControllerId = int32(1);
+	}
+
+	bool ret = UGameViewportClient::InputKey(InViewport, ControllerId, Key, EventType, AmountDepressed, bGamepad);
 
 	//UE_LOG(LogTemp, Warning, TEXT("ASD 1"));
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "ASD 1");
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, FString::Printf(TEXT("%d %s %s"), ControllerId, *Key.ToString(), bGamepad ? TEXT("Gamepad") : TEXT("Keyboard")));
 
-	//return ret;
+	return ret;
 
+	/*
 	if (IgnoreInput())
 	{
 		return false;
@@ -62,18 +69,25 @@ bool UTopdownGameViewportClient::InputKey(FViewport* InViewport, int32 Controlle
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, FString::Printf(TEXT("%d %s %s"), ControllerId, *Key.ToString(), bGamepad ? TEXT("Gamepad") : TEXT("Keyboard")));
 
 	return bResult;
+	*/
 }
 
 bool UTopdownGameViewportClient::InputAxis(FViewport* InViewport, int32 ControllerId, FKey Key, float Delta, float DeltaTime, int32 NumSamples, bool bGamepad)
 {
-	//bool ret = UGameViewportClient::InputAxis(InViewport, ControllerId, Key, Delta, DeltaTime, NumSamples, bGamepad);
+	if (bGamepad)
+	{
+		ControllerId = int32(1);
+	}
+
+	bool ret = UGameViewportClient::InputAxis(InViewport, ControllerId, Key, Delta, DeltaTime, NumSamples, bGamepad);
 
 	//UE_LOG(LogTemp, Warning, TEXT("ASD 2"));
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "ASD 2");
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, FString::Printf(TEXT("%d %s %s"), ControllerId, *Key.ToString(), bGamepad ? TEXT("Gamepad") : TEXT("Keyboard")));
 
-	//return ret;
+	return ret;
 
+	/*
 	if (IgnoreInput())
 	{
 		return false;
@@ -133,4 +147,5 @@ bool UTopdownGameViewportClient::InputAxis(FViewport* InViewport, int32 Controll
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, FString::Printf(TEXT("%d %s %s"), ControllerId, *Key.ToString(), bGamepad ? TEXT("Gamepad") : TEXT("Keyboard")));
 
 	return bResult;
+	*/
 }
