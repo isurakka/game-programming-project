@@ -1,0 +1,69 @@
+% book example for classicthesis.sty
+\documentclass[
+  % Replace twoside with oneside if you are printing your thesis on a single side
+  % of the paper, or for viewing on screen.
+  %oneside,
+  oneside,
+  11pt, a4paper,
+  footinclude=true,
+  headinclude=true,
+  cleardoublepage=empty
+]{scrbook}
+
+\usepackage{lipsum}
+\usepackage[linedheaders,parts,pdfspacing]{classicthesis}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{acronym}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\title{Game Project \\ ``Topdown Game'' Post-Mortem}
+\author{Matti Jokitulppo \\ Iiro Surakka \\ Mika Lehtinen}
+
+\begin{document}
+
+\maketitle
+
+\include{FrontBackMatter/contents}
+
+\chapter{Looking back}
+\section{What we learned}
+\begin{itemize}
+\item 3D modeling - Mika didn't have any prior experience with creating 3D assets before the project. Even though he joined the project halfway through, he learned quite a lot during the project.
+\item Unreal Engine 4 - During the course, Matti \& Iiro learned a ton about game development with UE4, from gameplay programming to menus, animation, physics and multiplayer.
+\item Game project workflow and management - We also gained a lot of new experiences related to managing and scheduling a game project. Our platform of choice was GitHub, where we hosted the whole project and it's related documentation, and we feel this was definitely the right choice.
+\end{itemize}
+
+\section{What went wrong}
+\begin{itemize}
+\item Task priorization - We should've focused first on the core mechanics, to put it simply. Matti \& Iiro just worked on whatever they felt like. This wasn't a big issue all in all, as we got everything done in the end.
+\item Milestones - We didn't really keep track of any milestones apart from first playable prototype.
+
+\end{itemize}
+\section{What went right}
+\begin{itemize}
+\item Game mechanics \& core gameplay - Most importantly of all, we feel we made a game that is actually pretty fun to play
+\item Game graphics - For being made by programmers, we think our game is quite pretty. Picking a low-poly art-style and styling it up with different effects and post-processing proved to be a great choice.
+\item Choice of version control  - GitHub ended up being a great choice for a small game project such as this. We couldn't  have succeeded without it
+\item Choice of documentation - Right from the start, since there were only two primary team members, we decided to keep everything as agile as possible. In practise, that meant keeping documentation short and concise, and letting the game speak for itself, rather than writing large, multi-page design documents and project plans. in retrospect, we feel this was definitely the right choice.
+\end{itemize}
+\section{Wrapping up}
+All in all, we're very pleased with the current state of the project. We got pretty much all of the features implemented we had originally planned (with the notable absence of online multiplayer), and all things considered, the project went over without any major issues.
+\chapter{Our 10 points to keep in mind}
+
+\chapter{Self-evaluation}
+\section{Matti}
+``All in all, I think we did a really great job putting this project together. The game is quite good, and has a lot of features and polish.I'd give myself and Iiro a 5, for sure. Iiro lost a bit of steam at the mid-way point due to issues with Unreal Engine, but all in all he did an excellent job. Even though us two did most of the project, including 3d models, I still think Mika was good to have around. It's not really a fair comparison, as me \& Iiro had so much previous experience with game development. Hopefully he learned something about game asset creation. I'd rate him a 2.''
+\section{Iiro}
+\section{Mika}
+\chapter{Improvements \& suggestions for course}
+\chapter{Future of the project}
+\end{document}
