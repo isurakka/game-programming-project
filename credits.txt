@@ -8,3 +8,11 @@ Level teleport sound: http://freesound.org/people/zimbot/sounds/122972/
 Varazuvi - Hollywood Dragons - gDragon Short Huff
 RDGSFX002 - Creatures - Creature Screeches
 Mechanical Wave - Sci-Fi-Invaders - Creature Scream
+
+### MUSIC
+All music by Naoki Kodaka
+
+Title screen - Journey to Silius - Opening
+Jungle - Blaster Master - Area 1: Forest
+Cave - Super Spy Hunter - Stage 2 & 6
+Boss map - Journey to silius - Stage 4
