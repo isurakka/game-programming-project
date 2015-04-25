@@ -10,7 +10,7 @@ RDGSFX002 - Creatures - Creature Screeches
 Mechanical Wave - Sci-Fi-Invaders - Creature Scream
 
 ### MUSIC
-All music by Naoki Kodaka
+All music borrowed from Naoki Kodaka
 
 Title screen - Journey to Silius - Opening
 Jungle - Blaster Master - Area 1: Forest
