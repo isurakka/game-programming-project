@@ -4,6 +4,7 @@ Lightning zapper sound: https://www.freesound.org/people/JoelAudio/sounds/136542
 Shotgun sound: http://freesound.org/people/Kodack/sounds/258194/
 Teleport sound: http://freesound.org/people/fins/sounds/172207/
 Level teleport sound: http://freesound.org/people/zimbot/sounds/122972/
+Pick up weapon sound: http://freesound.org/people/knova/sounds/170273/
 ### Sonniss GDC Game Audio Bundle
 Varazuvi - Hollywood Dragons - gDragon Short Huff
 RDGSFX002 - Creatures - Creature Screeches
