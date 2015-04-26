@@ -16,3 +16,4 @@ Title screen - Journey to Silius - Opening
 Jungle - Blaster Master - Area 1: Forest
 Cave - Super Spy Hunter - Stage 2 & 6
 Boss map - Journey to silius - Stage 4
+Boss death jingle - Journey to Silius - Unused Fanfare
